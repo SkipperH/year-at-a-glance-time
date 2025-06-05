@@ -1,10 +1,10 @@
-
 import React, { useState, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { CalendarIcon, StickyNote, Calendar } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { CalendarIcon, StickyNote, Calendar, X } from 'lucide-react';
 
 interface SelectedDate {
   year: number;
@@ -17,6 +17,7 @@ interface Note {
   dates: string[];
   content: string;
   createdAt: Date;
+  color: string;
 }
 
 const YearlyCalendar = () => {
@@ -27,11 +28,23 @@ const YearlyCalendar = () => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [currentNote, setCurrentNote] = useState('');
   const [showNotesPanel, setShowNotesPanel] = useState(false);
+  const [popoverNote, setPopoverNote] = useState<Note | null>(null);
 
   const currentYear = new Date().getFullYear();
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const noteColors = [
+    'bg-emerald-400',
+    'bg-purple-400', 
+    'bg-orange-400',
+    'bg-pink-400',
+    'bg-cyan-400',
+    'bg-yellow-400',
+    'bg-red-400',
+    'bg-indigo-400'
   ];
 
   const getDaysInMonth = (year: number, month: number) => {
@@ -48,6 +61,24 @@ const YearlyCalendar = () => {
 
   const formatMonthKey = (year: number, month: number) => {
     return `${year}-${month.toString().padStart(2, '0')}`;
+  };
+
+  const getDateNote = (dateKey: string) => {
+    return notes.find(note => note.dates.includes(dateKey));
+  };
+
+  const getDayDisplayClass = (dateKey: string, isSelected: boolean) => {
+    const note = getDateNote(dateKey);
+    
+    if (note) {
+      return `${note.color} text-white shadow-lg border-2 border-white`;
+    }
+    
+    if (isSelected) {
+      return 'bg-blue-500 text-white shadow-md transform scale-105';
+    }
+    
+    return 'hover:bg-blue-100 hover:text-blue-700';
   };
 
   const handleMonthClick = (monthIndex: number) => {
@@ -126,19 +157,33 @@ const YearlyCalendar = () => {
 
   const saveNote = () => {
     if (currentNote.trim() && selectedDates.size > 0) {
+      const colorIndex = notes.length % noteColors.length;
       const newNote: Note = {
         id: Date.now().toString(),
         dates: Array.from(selectedDates),
         content: currentNote.trim(),
-        createdAt: new Date()
+        createdAt: new Date(),
+        color: noteColors[colorIndex]
       };
       setNotes([...notes, newNote]);
       setCurrentNote('');
+      clearSelection();
     }
   };
 
   const deleteNote = (noteId: string) => {
     setNotes(notes.filter(note => note.id !== noteId));
+    setPopoverNote(null);
+  };
+
+  const handleDayClick = (year: number, month: number, day: number, e: React.MouseEvent) => {
+    const dateKey = formatDateKey(year, month, day);
+    const note = getDateNote(dateKey);
+    
+    if (note) {
+      e.stopPropagation();
+      setPopoverNote(note);
+    }
   };
 
   const totalDaysInYear = (year: number) => {
@@ -163,22 +208,65 @@ const YearlyCalendar = () => {
     for (let day = 1; day <= daysInMonth; day++) {
       const dateKey = formatDateKey(currentYear, monthIndex, day);
       const isSelected = selectedDates.has(dateKey);
+      const note = getDateNote(dateKey);
       
-      days.push(
+      const dayElement = (
         <div
           key={day}
-          className={`w-8 h-8 flex items-center justify-center text-sm cursor-pointer rounded-md transition-all duration-200 select-none ${
-            isSelected
-              ? 'bg-blue-500 text-white shadow-md transform scale-105'
-              : 'hover:bg-blue-100 hover:text-blue-700'
-          }`}
+          className={`w-8 h-8 flex items-center justify-center text-sm cursor-pointer rounded-md transition-all duration-200 select-none ${getDayDisplayClass(dateKey, isSelected)} ${note ? 'relative' : ''}`}
           onMouseDown={() => handleMouseDown(currentYear, monthIndex, day)}
           onMouseEnter={() => handleMouseEnter(currentYear, monthIndex, day)}
           onMouseUp={handleMouseUp}
+          onClick={(e) => handleDayClick(currentYear, monthIndex, day, e)}
         >
           {day}
+          {note && (
+            <div className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full border border-gray-300"></div>
+          )}
         </div>
       );
+
+      if (note) {
+        days.push(
+          <Popover key={day} open={popoverNote?.id === note.id} onOpenChange={(open) => !open && setPopoverNote(null)}>
+            <PopoverTrigger asChild>
+              {dayElement}
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-semibold">Note Preview</h4>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setPopoverNote(null)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="text-sm text-gray-600">
+                  {note.dates.length} day{note.dates.length !== 1 ? 's' : ''} selected
+                </div>
+                <p className="text-sm">{note.content}</p>
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-xs text-gray-500">
+                    {note.createdAt.toLocaleDateString()}
+                  </span>
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => deleteNote(note.id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        );
+      } else {
+        days.push(dayElement);
+      }
     }
 
     return (
@@ -262,6 +350,8 @@ const YearlyCalendar = () => {
             <p>• Click on individual days to select them, or click and drag to select a range of days.</p>
             <p>• Click on month names to select/deselect entire months.</p>
             <p>• Use the Notes panel to add notes to your selected time periods.</p>
+            <p>• Days with notes are color-coded and show a small indicator dot.</p>
+            <p>• Click on colored days to view note previews in a popup.</p>
           </div>
         </div>
 
@@ -297,9 +387,12 @@ const YearlyCalendar = () => {
                 {notes.map((note) => (
                   <div key={note.id} className="border rounded-lg p-3 bg-gray-50">
                     <div className="flex justify-between items-start mb-2">
-                      <span className="text-sm text-gray-600">
-                        {note.dates.length} day{note.dates.length !== 1 ? 's' : ''} selected
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-4 h-4 rounded ${note.color}`}></div>
+                        <span className="text-sm text-gray-600">
+                          {note.dates.length} day{note.dates.length !== 1 ? 's' : ''} selected
+                        </span>
+                      </div>
                       <Button
                         variant="destructive"
                         size="sm"
