@@ -8,7 +8,7 @@ Dit is een persoonlijke planningsapp ontworpen om structuur en overzicht te bied
 ## 🔗 Live Project
 
 Bekijk of bewerk het project rechtstreeks via **Lovable AI**:  
-👉 [Projectlink openen](https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3)
+👉 [Projectlink openen]([https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3](https://year-at-a-glance-time.lovable.app/))
 
 ---
 
@@ -46,4 +46,4 @@ Ga naar het [project op Lovable](https://lovable.dev/projects/a6b6afb3-3c9b-4f82
 ### 💻 Lokaal in je eigen IDE
 1. Clone de repo:
    ```sh
-   git clone <YOUR_GIT_URL>
+   git clone https://github.com/SkipperH/year-at-a-glance-time
