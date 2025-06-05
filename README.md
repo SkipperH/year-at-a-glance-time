@@ -1,73 +1,49 @@
-# Welcome to your Lovable project
+# 📅 Year at a Glance Time – Personal Planner App
 
-## Project info
+Een visueel overzicht, één blik vooruit.  
+Dit is een persoonlijke planningsapp ontworpen om structuur en overzicht te bieden binnen drukke studie- of werkschema’s.
 
-**URL**: https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3
+---
 
-## How can I edit this code?
+## 🔗 Live Project
 
-There are several ways of editing your application.
+Bekijk of bewerk het project rechtstreeks via **Lovable AI**:  
+👉 [Projectlink openen](https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3)
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3) and start prompting.
+## 🧠 Over het project
 
-Changes made via Lovable will be committed automatically to this repo.
+Tijdens mijn semester heb ik deze app ontwikkeld als **persoonlijke tool** om mijn planning en prioriteiten visueel inzichtelijk te maken. De applicatie helpt mij bij het structureren van taken, deadlines en tijdsblokken in een jaaroverzicht. Dit draagt niet alleen bij aan mijn productiviteit, maar sluit ook aan bij mijn leerdoelen rondom front-end development en visueel ontwerp.
 
-**Use your preferred IDE**
+Belangrijkste kenmerken:
+- Jaar-, maand- en weekweergave
+- Strakke en consistente visuele stijl met Tailwind & shadcn/ui
+- Gemakkelijk uit te breiden en aan te passen
+- Ontwikkeld met behulp van Lovable AI, maar ook lokaal te bewerken
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## ⚙️ Technologieën
 
-Follow these steps:
+Gebouwd met moderne webtechnologieën:
+- [Vite](https://vitejs.dev)
+- [React](https://react.dev)
+- [TypeScript](https://www.typescriptlang.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com)
+- [Lovable](https://lovable.dev) – AI-ondersteunde ontwikkeling
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ Hoe bewerk ik dit project?
 
-# Step 3: Install the necessary dependencies.
-npm i
+Je hebt meerdere opties om dit project te bewerken:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### 🔧 Via Lovable
+Ga naar het [project op Lovable](https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3) en begin direct met het aanpassen via prompts of de visuele editor.
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/a6b6afb3-3c9b-4f82-ba85-acd96273f9a3) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### 💻 Lokaal in je eigen IDE
+1. Clone de repo:
+   ```sh
+   git clone <YOUR_GIT_URL>
