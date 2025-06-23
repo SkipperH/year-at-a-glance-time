@@ -40,92 +40,44 @@ You can delete individual notes
 
 ## 🏗️ Projectstructure
 ```bash
-world-view-news/
-
-├── public/
-
-│   └── ...                       # Statische bestanden (afbeeldingen, favicon, etc.)
-
+calendar-app/
+├── public/                         # Statische bestanden (favicon, manifest, icons)
 ├── src/
-
-│   ├── components/
-
-│   │   ├── Header.tsx           # Navigatiebalk (verplaatsen uit ui)
-
-│   │   ├── MapComponent.tsx     # Leaflet-kaart (hernoemen indien nodig)
-
-│   │   ├── NewsPanel.tsx        # Nieuwsweergave
-
-│   │   ├── chat/                # AI-gerelateerde UI componenten
-
-│   │   └── ui/                  # Knoppen, modals etc. (zoals CTAButtons, ApiKeyModal)
-
-│   ├── pages/
-
-│   │   ├── Index.tsx            # Hoofdpagina
-
-│   │   ├── News.tsx             # Nieuwsfilter pagina
-
-│   │   ├── Chat.tsx             # Chatpagina (optioneel als extra functie)
-
-│   │   ├── About.tsx            # Over ons
-
-│   │   ├── Login.tsx            # (Toevoegen indien nodig)
-
-│   │   └── NotFound.tsx         # Fallbackpagina
-
-│   ├── services/
-
-│   │   ├── LocationService.ts   # Geocoding/search op locatie
-
-│   │   ├── NewsService.ts       # Nieuwsdata ophalen of mocken
-
-│   │   └── GeminiService.ts     # Externe AI-koppeling (verplaatsen vanuit utils)
-
-│   ├── hooks/
-
-│   │   └── use-toast.ts         # Feedbackmeldingen
-
+│   ├── components/                 # UI-componenten
+│   │   └── ui/
+│   │       ├── CalendarMonth.tsx      # Weergave per maand
+│   │       ├── CalendarStats.tsx      # Statistieken over dagen/gebruik
+│   │       ├── NotesPanel.tsx         # Notities of taken gekoppeld aan dagen
+│   │       └── YearlyCalendar.tsx     # Jaaroverzicht
+│   ├── hooks/                      # Custom React Hooks
+│   │   ├── use-mobile.tsx              # Mobiele weergavedetectie
+│   │   ├── use-toast.ts                # Feedbackmeldingen
+│   │   ├── useCalendarPersistence.ts   # Opslaan en laden van data
+│   │   └── useCalendarUtils.ts         # Hulpfuncties voor datumlogica
 │   ├── lib/
-
-│   │   └── utils.ts             # Algemene hulpfuncties (merge met promptOptimizer.ts)
-
-│   ├── App.tsx
-
-│   ├── App.css
-
-│   ├── index.css
-
-│   ├── main.tsx
-
-│   └── vite-env.d.ts
-
+│   │   └── utils.ts                    # Algemene utility functies (bv. datumformaat)
+│   ├── pages/
+│   │   └── index.tsx                   # (Nog leeg — eventueel homepage of routing entry)
+│   ├── types/
+│   │   └── calendar.ts                 # Interfaces/types voor data zoals events of notities
+│   ├── App.tsx                         # Root component
+│   ├── App.css                         # Component-specifieke stijlen
+│   ├── index.css                       # Globale Tailwind styles
+│   ├── main.tsx                        # Entry point van React-app
+│   └── vite-env.d.ts                   # Vite-types
 ├── .gitignore
-
 ├── bun.lockb
-
 ├── components.json
-
 ├── eslint.config.js
-
 ├── index.html
-
 ├── package-lock.json
-
 ├── package.json
-
 ├── postcss.config.js
-
 ├── README.md
-
 ├── tailwind.config.ts
-
 ├── tsconfig.json
-
 ├── tsconfig.app.json
-
 ├── tsconfig.node.json
-
 └── vite.config.ts
 
  
