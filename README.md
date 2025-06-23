@@ -1,11 +1,11 @@
 # 📅 Year at a Glance Time – Personal Planner App
-Een visueel overzicht, één blik vooruit.  
-Dit is een persoonlijke planningsapp ontworpen om structuur en overzicht te bieden binnen drukke studie- of werkschema’s.
+A visual overview, in one glance.
+This is a personal planning app designed to provide structure and overview within busy study time or work schedules.
 
 ## 🔗 Live Project
 
 View or edit the project directly via Vercel:
-👉 [Open projectlink](https://year-at-a-glance-time.lovable.app/)
+👉 [Open projectlink](https://year-at-a-glance-time.vercel.app/)
 
 ## 🧠 About the Project
 
@@ -18,19 +18,24 @@ Key features:
 - Built with the help of Lovable AI, but also editable locally
 
 ## ✨ Features
-### 🗺️  Real-time conversations with philosophers
-- Philosophers respond live based on user-submitted messages and questions.
-### 🔍 Philosophical variety across multiple eras
-- A diverse range of philosophers from the Modern era, Ancient Rome, and the Enlightenment.
-- Currently, users can talk to René Descartes, Marcus Aurelius, and Friedrich Nietzsche.
-### 🧠 Choice of Gemini AI models
-- Users can choose from different Gemini AI models, such as Gemini 2.0 Flash or Gemini 1.5 Pro.
-### 🧩 Optional prompt optimization
-- Messages can be optimized before being sent to philosophers, generating shorter and more specific prompts automatically.
-### 🎨 Timeless UI/UX
+### ⚪  Create notes for a certain timeframe
+- Click on any month name to select/deselect the entire month
+- Added a Notes panel that can be toggled with the purple "Notes" button
+- Notes persist during your session (to make them permanent, you'd need backend storage)
+- Each note shows how many days were selected when it was created
+You can delete individual notes
+### ⚪ Color coding and visual indicators
+- Visual indicators for selected periods with different colors
+- Selected months have a blue border and background tint
+### ⚪ Highlight certain time periods
+- Added a counter showing how many months are selected
+### ⚪ Clear overview of a 12 month time span
+- A clean yearly calendar grid showing all 12 months
+- A summary showing total selected days and percentage of the year
+### ⚪ Intuitive and easy to use UI
 - Responsive design for desktop and mobile
 - Styled with Tailwind CSS
-- Smooth animations and hover effects
+- Interactive day selection with click and drag functionality
 - Intuitive interface with clear user feedback
 
 ## 🏗️ Projectstructure
@@ -125,7 +130,7 @@ world-view-news/
 
  
 ```
-## 🚀 Installation
+## ⚙️ Installation
 ### Requirements
 - Node.js (version 18 or higher)
 - npm, yarn, of bun package manager
@@ -217,15 +222,3 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2479f9a0-2334-48df-9853-53317d0eaf8e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
